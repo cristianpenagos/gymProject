@@ -28,9 +28,10 @@ CREATE TABLE `casillero` (
   `diasAlquiler` int DEFAULT NULL,
   `usuario_idusuario` int DEFAULT NULL,
   PRIMARY KEY (`idcasillero`),
+  UNIQUE KEY `numCasillero` (`numCasillero`),
   KEY `fk_casillero_usuario` (`usuario_idusuario`),
-  CONSTRAINT `fk_casillero_usuario` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_casillero_usuario` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +40,7 @@ CREATE TABLE `casillero` (
 
 LOCK TABLES `casillero` WRITE;
 /*!40000 ALTER TABLE `casillero` DISABLE KEYS */;
+INSERT INTO `casillero` VALUES (1,1,30,1);
 /*!40000 ALTER TABLE `casillero` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,20 +59,17 @@ CREATE TABLE `medidas` (
   `abdomenM` float NOT NULL,
   `caderaM` float NOT NULL,
   `piernaAltaM` float NOT NULL,
-  `PiernaBajaM` float NOT NULL,
+  `piernaBajaM` float NOT NULL,
   `pantorrillaM` float NOT NULL,
-  `AbdomenG` float NOT NULL,
+  `abdomenG` float NOT NULL,
   `bicepG` float NOT NULL,
   `tricepG` float NOT NULL,
   `escapulaG` float NOT NULL,
   `piernaG` float NOT NULL,
   `usuario_idusuario` int NOT NULL,
-  `usuario_qrAsociado` int NOT NULL,
   PRIMARY KEY (`idmedidas`),
-  UNIQUE KEY `idmedidas_UNIQUE` (`idmedidas`),
-  KEY `fk_medidas_usuario` (`usuario_idusuario`),
-  CONSTRAINT `fk_medidas_usuario` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `idmedidas` (`idmedidas`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,6 +78,7 @@ CREATE TABLE `medidas` (
 
 LOCK TABLES `medidas` WRITE;
 /*!40000 ALTER TABLE `medidas` DISABLE KEYS */;
+INSERT INTO `medidas` VALUES (1,'2024-01-04',1.1,2.2,3.3,4.4,5.5,6.6,7.7,8.8,9.9,10.1,11.11,12.12,1),(2,'2024-01-01',1.1,2.2,3.3,4.4,5.5,6.6,7.7,8.8,9.9,10.1,11.11,12.12,2);
 /*!40000 ALTER TABLE `medidas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,13 +93,12 @@ CREATE TABLE `mensualidad` (
   `idmensualidad` int NOT NULL AUTO_INCREMENT,
   `fecha` date NOT NULL,
   `valor` int NOT NULL,
-  `plan` varchar(45) DEFAULT NULL,
+  `plan` int NOT NULL,
   `usuario_idusuario` int NOT NULL,
-  `usuario_qrAsociado` int NOT NULL,
   PRIMARY KEY (`idmensualidad`),
   KEY `fk_mensualidad_usuario` (`usuario_idusuario`),
-  CONSTRAINT `fk_mensualidad_usuario` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `fk_mensualidad_usuario` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,31 +107,32 @@ CREATE TABLE `mensualidad` (
 
 LOCK TABLES `mensualidad` WRITE;
 /*!40000 ALTER TABLE `mensualidad` DISABLE KEYS */;
+INSERT INTO `mensualidad` VALUES (1,'2024-01-04',55000,5,1);
 /*!40000 ALTER TABLE `mensualidad` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `qr`
+-- Table structure for table `otrosingresos`
 --
 
-DROP TABLE IF EXISTS `qr`;
+DROP TABLE IF EXISTS `otrosingresos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `qr` (
-  `idqr` int NOT NULL AUTO_INCREMENT,
-  `consecutivo` int NOT NULL,
-  PRIMARY KEY (`idqr`),
-  UNIQUE KEY `consecutivo_UNIQUE` (`consecutivo`)
+CREATE TABLE `otrosingresos` (
+  `idingreso` int NOT NULL AUTO_INCREMENT,
+  `elemento` varchar(100) NOT NULL,
+  `valor` int DEFAULT NULL,
+  PRIMARY KEY (`idingreso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `qr`
+-- Dumping data for table `otrosingresos`
 --
 
-LOCK TABLES `qr` WRITE;
-/*!40000 ALTER TABLE `qr` DISABLE KEYS */;
-/*!40000 ALTER TABLE `qr` ENABLE KEYS */;
+LOCK TABLES `otrosingresos` WRITE;
+/*!40000 ALTER TABLE `otrosingresos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `otrosingresos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -143,23 +143,22 @@ DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
-  `idusuario` int NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
-  `numIdentificacion` varchar(45) DEFAULT NULL,
-  `fechaNacimiento` date DEFAULT NULL,
+  `idusuario` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(60) NOT NULL,
+  `numIdentificacion` varchar(15) NOT NULL,
+  `fechaNacimiento` date NOT NULL,
   `telefono` varchar(45) DEFAULT NULL,
-  `fechaRegistro` date DEFAULT NULL,
+  `fechaRegistro` date NOT NULL,
   `qrAsociado` int NOT NULL,
   `cGrupales` int DEFAULT NULL,
-  `casillero_idcasillero` int NOT NULL,
   `enfermedades` varchar(255) DEFAULT NULL,
   `objetivos` varchar(512) DEFAULT NULL,
   `notasGenerales` varchar(1024) DEFAULT NULL,
   `direccion` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`idusuario`,`qrAsociado`),
-  KEY `fk_usuario_qr` (`qrAsociado`),
-  CONSTRAINT `fk_usuario_qr` FOREIGN KEY (`qrAsociado`) REFERENCES `qr` (`idqr`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`idusuario`),
+  UNIQUE KEY `numIdentificacion` (`numIdentificacion`),
+  UNIQUE KEY `qrAsociado` (`qrAsociado`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,6 +167,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'Cristian Penagos','1033653257','1993-04-18','3147748687','2024-01-02',1,0,'Sin Enfermedades','Aumento de masa muscular',NULL,NULL),(17,'Ariana','06789','2022-04-19','3147748687','2023-01-03',7,0,'Sin Enfermedades','Aumento de masa muscular','Sin notas generales','Medellin'),(18,'Cristian Penagos','1053257','1993-04-18','3147748687','2024-01-02',2,0,'Sin Enfermedades','Aumento de masa muscular',NULL,NULL),(20,'Ariana','089','2022-04-19','3147748687','2023-01-03',3,0,'Sin Enfermedades','Aumento de masa muscular','Sin notas generales','Medellin'),(21,'Ariana','9089','2022-04-19','3147748687','2023-01-03',4,0,'Sin Enfermedades','Aumento de masa muscular','Sin notas generales','Medellin');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -180,4 +180,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-03 18:11:33
+-- Dump completed on 2024-01-04 17:40:52
