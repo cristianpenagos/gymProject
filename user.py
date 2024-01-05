@@ -1,65 +1,33 @@
 
-import _mysql_connector
-import mysql.connector
+import conexion
+
+# pylint: disable=C0103
 
 
 class User:
-    def __init__(self, nombre, apellido, numID, fechaNacimiento, celular, fechaRegistro, fechaMensualidad, qrAsociado):
+    def __init__(self, nombre, numID, fechaNacimiento, celular, fechaRegistro, qrAsociado, cGrupales, enfermedades, objetivos, notasGenerales, direccion):
         self.nombre = nombre
-        self.apellido = apellido
         self.numID = numID
         self.fechaNacimiento = fechaNacimiento
         self.celular = celular
         self.fechaRegistro = fechaRegistro
-        self.fechaMensualidad = fechaMensualidad
         self.qrAsociado = qrAsociado
+        self.cGrupales = cGrupales
+        self.enfermedades = enfermedades
+        self.objetivos = objetivos
+        self.notasGenerales = notasGenerales
+        self.direccion = direccion
 
+    def guardar(self, connection):
 
-conexion = mysql.connector.connect(
+        cursor = connection.cursor()
+        query = 'INSERT INTO usuario (nombre, numIdentificacion, fechaNacimiento, telefono, \
+                              fechaRegistro, qrAsociado, cGrupales, enfermedades, objetivos, notasGenerales, \
+                             direccion) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
 
-    host='localhost',
-    user='root',
-    password='123456789',
-    database='gymdb'
-)
-
-
-def guardar(User):
-
-    cursor = conexion.cursor()
-
-    sql = 'INSERT INTO user(nombre, apellido, numID,numID, fechaNacimiento, celular, fechaRegistro, fechaMensualidad, qrAsociado) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'
-    valores = (User.nombre, User.apellido, User.numID, User.fechaNacimiento,
-               User.celular, User.fechaRegistro, User.fechaMensualidad, User.qrAsociado)
-
-    cursor.execute(sql, valores)
-    conexion.commit()
-
-    cursor.close()
-    conexion.close()
-
-
-# Imprimir los datos del usuario
-print("Nombre:", nuevo_usuario.nombre)
-print("Apellido:", nuevo_usuario.apellido)
-print("Número de Identificación:", nuevo_usuario.numID)
-print("Fecha de Nacimiento:", nuevo_usuario.fechaNacimiento)
-print("Celular:", nuevo_usuario.celular)
-print("Fecha de Registro:", nuevo_usuario.fechaRegistro)
-print("Fecha de Mensualidad:", nuevo_usuario.fechaMensualidad)
-print("QR Asociado:", nuevo_usuario.qrAsociado)
-
-
-# Crear un objeto de la clase User
-nuevo_usuario = User(
-    nombre="Juan",
-    apellido="Pérez",
-    numID=123456789,
-    fechaNacimiento="1990-05-15",
-    celular=5551234567,
-    fechaRegistro="2023-01-01",
-    fechaMensualidad="2023-02-01",
-    qrAsociado=1234
-)
-
-guardar(nuevo_usuario)
+        cursor.execute(query, (self.nombre, self.numID, self.fechaNacimiento, self.celular,
+                               self.fechaRegistro, self.qrAsociado, self.cGrupales, self.enfermedades,
+                               self.objetivos, self.notasGenerales, self.direccion))
+        connection.commit()
+        cursor.close()
+        connection.close()
