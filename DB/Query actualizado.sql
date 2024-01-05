@@ -2,7 +2,8 @@ use gymDB;
 
 DROP TABLE usuario
 
-select * from usuario	
+select * from usuario
+SELECT * FROM otrosIngresos	
 
 
 
@@ -124,8 +125,11 @@ INSERT INTO medidas (fecha, cuelloM, brazoM, abdomenM, caderaM, piernaAltaM, pie
 CREATE TABLE otrosIngresos(
 	`idingreso` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `elemento` varchar(100) NOT NULL,
-    `valor` INT  
+    `valor` INT,
+    `fecha` DATE NOT NULL
 )
+
+ALTER TABLE otrosIngresos ADD COLUMN fecha DATE NOT NULL DEFAULT "2024-01-05";
 
 
 
