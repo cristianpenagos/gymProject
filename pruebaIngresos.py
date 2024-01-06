@@ -26,5 +26,5 @@ from otrosIngresos import OtrosIngresos
 # DELETE
 if __name__ == "__main__":
 
-    OtrosIngresos().eliminar(1)
+    OtrosIngresos.eliminar(1)
     OtrosIngresos.consultar_todos()

@@ -61,12 +61,12 @@ class OtrosIngresos:
         try:
             db_connection = conectar()
             cursor = db_connection.cursor()
-            query = "DELETE FROM otrosIngresos WHERE idingresos = %s"
-            values = (self, idingreso)
+            query = "DELETE FROM otrosIngresos WHERE idingreso = %s"
+            values = (idingreso,)
             cursor.execute(query, values)
             db_connection.commit()
             cursor.close()
             db_connection.close()
             print(f"Registro con ID: {idingreso} eliminado correctamente")
         except Exception as e:
-            print("Error al elimnar")
+            print("Error al eliminar")
