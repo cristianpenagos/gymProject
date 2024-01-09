@@ -29,24 +29,27 @@ class OtrosIngresos:
 
             # Obtener todos los resultados
             resultados = cursor.fetchall()
-
+            text_resultado = ""
             # Imprimir o devolver los resultados, según lo que desees hacer
             for resultado in resultados:
+                text_resultado += f"ID: {resultado[0]}, Elemento: {resultado[1]}, Valor: {resultado[2]}, Fecha: {resultado[3]}\n"
+
                 print(
                     f"ID: {resultado[0]}, Elemento: {resultado[1]}, Valor: {resultado[2]}, Fecha: {resultado[3]}")
 
             cursor.close()
             db_connection.close()
+            return text_resultado
 
         except Exception as e:
             print(f"Error al consultar datos: {e}")
 
-    def actualizar(self, idingreso):
+    def actualizar(self, idingreso, elemento, valor, fecha):
         try:
             db_connection = conectar()
             cursor = db_connection.cursor()
             query = "UPDATE otrosIngresos SET elemento = %s, valor = %s, fecha = %s WHERE idingreso = %s"
-            values = (self.elemento, self.valor, self.fecha, idingreso)
+            values = (elemento, valor, fecha, idingreso)
             cursor.execute(query, values)
             db_connection.commit()
             cursor.close()
