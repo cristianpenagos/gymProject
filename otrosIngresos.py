@@ -8,15 +8,19 @@ class OtrosIngresos:
         self.fecha = fecha
 
     def guardar(self):
-
-        db_connection = conectar()
-        cursor = db_connection.cursor()
-        query = "INSERT INTO otrosIngresos (elemento, valor, fecha) VALUES (%s, %s, %s)"
-        values = (self.elemento, self.valor, self.fecha)
-        cursor.execute(query, values)
-        db_connection.commit()
-        cursor.close()
-        db_connection.close()
+        try:
+            db_connection = conectar()
+            cursor = db_connection.cursor()
+            query = "INSERT INTO otrosIngresos (elemento, valor, fecha) VALUES (%s, %s, %s)"
+            values = (self.elemento, self.valor, self.fecha)
+            cursor.execute(query, values)
+            db_connection.commit()
+            cursor.close()
+            db_connection.close()
+            return("Registro guardado exitosamente")
+        except Exception as e:
+            return f"Error al guardar datos: {e}"
+            print(f"Error al guardar datos: {e}")
 
     @classmethod
     def consultar_todos(cls):  # "cls" is a convention, it refers to this class
@@ -42,6 +46,7 @@ class OtrosIngresos:
             return text_resultado
 
         except Exception as e:
+            return f"Error al consultar datos: {e}"
             print(f"Error al consultar datos: {e}")
 
     def actualizar(self, idingreso, elemento, valor, fecha):
@@ -54,9 +59,11 @@ class OtrosIngresos:
             db_connection.commit()
             cursor.close()
             db_connection.close()
+            return f"Registro con ID: {idingreso} actualizado correctamente"
             print(f"Registro con ID: {idingreso} actualizado correctamente")
 
         except Exception as e:
+            return f"Erro al modificar datos: {e}"
             print(f"Erro al modificar datos: {e}")
 
     @classmethod
@@ -70,6 +77,8 @@ class OtrosIngresos:
             db_connection.commit()
             cursor.close()
             db_connection.close()
+            return f"Registro con ID: {idingreso} eliminado correctamente"
             print(f"Registro con ID: {idingreso} eliminado correctamente")
         except Exception as e:
             print("Error al eliminar")
+            return f"Error al eliminar: {str(e)}"

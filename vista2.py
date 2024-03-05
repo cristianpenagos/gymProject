@@ -1,7 +1,6 @@
 import tkinter as tk
 
 
-
 def display2(name, dateInit, dateFinish, numDaysLeft, numLocker):
     # Create and config this window
 
@@ -42,7 +41,8 @@ def display2(name, dateInit, dateFinish, numDaysLeft, numLocker):
     montPayDate.config(bg="black", fg="white")
     montPayDate.place(x=550, y=250)
 
-    remainingDaysLabel = tk.Label(root2, text="Dias Restantes", font='Arial 30')
+    remainingDaysLabel = tk.Label(
+        root2, text="Dias Restantes", font='Arial 30')
     remainingDaysLabel.config(bg="black", fg="white")
     remainingDaysLabel.place(x=915, y=200)
 
@@ -54,7 +54,7 @@ def display2(name, dateInit, dateFinish, numDaysLeft, numLocker):
     lockerLabel.config(bg="black", fg="white")
     lockerLabel.place(x=150, y=310)
 
-    lockerNum = tk.Label(root2, text=numLocker, font='arial 200') # #ff04b7
+    lockerNum = tk.Label(root2, text=numLocker, font='arial 200')  # ff04b7
     lockerNum.config(bg="#ff04b7")
     lockerNum.place(x=90, y=370)
 
@@ -62,7 +62,8 @@ def display2(name, dateInit, dateFinish, numDaysLeft, numLocker):
     remainingDaysBox.config(bg="black", fg="white")
     remainingDaysBox.place(x=875, y=310)
 
-    remainingDaysBoxNum = tk.Label(root2, text=numDaysLeft, font='Arial 200') #  #28b7fe
+    remainingDaysBoxNum = tk.Label(
+        root2, text=numDaysLeft, font='Arial 200')  # 28b7fe
     remainingDaysBoxNum.config(bg="#28b7fe")
     remainingDaysBoxNum.place(x=910, y=370)
 

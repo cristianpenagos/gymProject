@@ -2,12 +2,14 @@ import cv2
 from pyzbar.pyzbar import decode
 
 
-def main():
+def qr_cam():
 
     import cv2
     from pyzbar.pyzbar import decode
     # Inicializar la cámara
     cap = cv2.VideoCapture(0)
+
+    qr_data = 0
 
     while True:
         # Capturar un frame desde la cámara
@@ -27,6 +29,7 @@ def main():
         # Romper el bucle si se presiona la tecla 'q'
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+        return qr_data
 
     # Liberar la cámara y cerrar la ventana
     cap.release()
@@ -34,4 +37,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    qr_cam()

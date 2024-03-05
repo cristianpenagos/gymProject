@@ -124,7 +124,7 @@ CREATE TABLE `otrosingresos` (
   `valor` int DEFAULT NULL,
   `fecha` date NOT NULL DEFAULT '2024-01-05',
   PRIMARY KEY (`idingreso`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `otrosingresos` (
 
 LOCK TABLES `otrosingresos` WRITE;
 /*!40000 ALTER TABLE `otrosingresos` DISABLE KEYS */;
-INSERT INTO `otrosingresos` VALUES (2,'venta de producto',20000,'2024-01-06'),(3,'Creatina',42000,'2024-01-06');
+INSERT INTO `otrosingresos` VALUES (3,'Creatina',42000,'2024-01-06'),(4,'xxxx',1111,'2022-02-02'),(6,'proteina',120000,'2024-01-25');
 /*!40000 ALTER TABLE `otrosingresos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,7 +160,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`idusuario`),
   UNIQUE KEY `numIdentificacion` (`numIdentificacion`),
   UNIQUE KEY `qrAsociado` (`qrAsociado`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,4 +182,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-06 11:47:34
+-- Dump completed on 2024-01-18 18:22:25

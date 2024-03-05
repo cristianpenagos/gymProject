@@ -1,10 +1,11 @@
 import mysql.connector
 
+
 def conectar():
     dbConnection = mysql.connector.connect(
         host='localhost',
         user='root',
-        password='0123456789',
+        password='123456789',
         database='gymdb'
     )
     if dbConnection.is_connected():
