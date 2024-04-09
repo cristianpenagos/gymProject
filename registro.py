@@ -5,7 +5,7 @@ def registro(self, user):
     user = user
     ###################################
     # hay que crear la nueva tabla en la base de datos, hacer el query y terminar la funcion.
-    ###############################################
+    ###################################################
     ## estructura de query de ejemplo
     try:
         db_connection = conectar()
