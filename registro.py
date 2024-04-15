@@ -20,3 +20,5 @@ def registro(self, user):
     except Exception as e:
         return f"Error al guardar datos: {e}"
         print(f"Error al guardar datos: {e}")
+
+        ###
