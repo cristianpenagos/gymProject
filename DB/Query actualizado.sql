@@ -87,6 +87,23 @@ INSERT INTO mensualidad (fecha, valor, plan, usuario_idusuario) VALUES ("2024-01
 
 SELECT * FROM mensualidad
 
+#Creacion de tabla Asistencia
+
+CREATE TABLE asistencia(
+  `idasistencia` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `fecha` TIMESTAMP NOT NULL,
+  `qrUsuario` INT NOT NULL,
+  `usuario_idusuario` INT NOT NULL
+  )
+  
+  #Creacion de FK asistencia usuario
+  
+  alter table asistencia ADD CONSTRAINT fk_asistencia_usuario FOREIGN KEY (usuario_idusuario) REFERENCES usuario(idusuario) ON DELETE CASCADE
+
+
+
+
+
 #Creacion tabla Medidas
 CREATE TABLE IF NOT EXISTS medidas (
   `idmedidas` INT NOT NULL AUTO_INCREMENT UNIQUE PRIMARY KEY,
@@ -147,6 +164,10 @@ ALTER TABLE usuario MODIFY COLUMN telefono BIGINT;
 SELECT * FROM usuario
 SELECT * FROM qr
 
+
+
+
+
 # consulta con join
 SELECT
   usuario.idusuario,
@@ -162,3 +183,6 @@ JOIN
   qr
 ON
   usuario.qrAsociado = qr.idqr;
+  
+  
+  
