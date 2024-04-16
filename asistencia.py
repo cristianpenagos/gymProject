@@ -1,19 +1,35 @@
 from conexion import conectar
 
-#def save_asistencia():
+import datetime
+
+fecha_actual = datetime.datetime.now()
+
+print(fecha_actual)
 
 
 
-def consultarIDUsuario(cls, qr):
+
+def save_asistencia():
+    try: 
+        db_connection = conectar()
+        cursor = db_connection.cursor()
+
+        query = "INSERT INTO asistencia (fecha, qrUsuario, usuario_idusuario) VALUES(%s, %s, %s)"
+        values = ()
+
+
+
+
+def consultarIDUsuario( qr):
     try:
         db_connection = conectar()
         cursor = db_connection.cursor()
 
         query = "SELECT idusuario FROM usuario WHERE qrAsociado = %s"
-        values = (qr)
+        values = (qr,)
         
         cursor.execute(query, values)
-        db_connection.commit()
+        #db_connection.commit()
 
         #Obtener resultado
 
@@ -36,5 +52,6 @@ def consultarIDUsuario(cls, qr):
 
 
 
-prueba = consultarIDUsuario(1)
+prueba = consultarIDUsuario(11)
 print(prueba)
+###
