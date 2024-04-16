@@ -3,12 +3,6 @@ from conexion import conectar
 import datetime
 
 
-
-print(fecha_actual)
-
-
-
-
 def save_asistencia(qr):
     try: 
         db_connection = conectar()
@@ -65,8 +59,5 @@ def consultarIDUsuario( qr):
         print(f"Error al consultar el idUsuario por QR: {e}")
         return None
 
-
-
-prueba = consultarIDUsuario(11)
-print(prueba)
-###
+#prueba = save_asistencia(11)
+#print(prueba)

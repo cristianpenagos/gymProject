@@ -7,6 +7,7 @@ from tkinter import PhotoImage
 from PIL import Image, ImageTk
 from pyzbar.pyzbar import decode
 from datetime import datetime, date
+from asistencia import save_asistencia
 
 
 class UserInfo_Frame(tk.Frame):
@@ -125,6 +126,7 @@ class UserInfo_Frame(tk.Frame):
             if qr_data is not None and qr_data != self.last_qr_data:
                 print(f"QR Code Data: {qr_data}")
                 self.last_qr_data = qr_data
+                save_asistencia(self.last_qr_data)
                 # llamamos a update_data para consultar DB y actualizar pantalla
                 self.update_data(qr_data)
 
