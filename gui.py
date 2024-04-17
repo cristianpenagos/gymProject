@@ -10,13 +10,21 @@ from medidas_frame import MedidasFrame
 class UserGui:
     def __init__(self, root):
 
+        self.iconUser = tk.PhotoImage(file = 'asets/iconUser.png')
+
+
         # Principal Window
         self.root = root
         self.root.title('BODY FIT')
         self.root.geometry('1300x700')
 
+        
+
+
+        self.boton = tk.Button(root, image=self.iconUser, command=lambda: print("Botón clickeado"))
+        self.boton.pack()
         self.btm_user = tk.Button(
-            root, text="Gestión \nUsuarios", font=("Times new roman", 14), command=self.show_user_frame)
+            root, image=self.iconUser, text="Gestión \nUsuarios", font=("Times new roman", 14), command=self.show_user_frame)
         self.btm_medidas = tk.Button(
             root, text="Medidas", font=("Times new roman", 14), command=self.show_medidas_frame)
         self.btm_mensualidad = tk.Button(
@@ -26,6 +34,7 @@ class UserGui:
         self.btm_backup = tk.Button(
             root, text='BackUp', font=("Times new roman", 14), command=self.respaldo)
 
+    
         self.btm_user.place(x=10, y=10, width=100, height=100)
         self.btm_medidas.place(x=10, y=120, width=100, height=100)
         self.btm_mensualidad.place(x=10, y=240, width=100, height=100)

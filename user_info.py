@@ -126,7 +126,7 @@ class UserInfo_Frame(tk.Frame):
             if qr_data is not None and qr_data != self.last_qr_data:
                 print(f"QR Code Data: {qr_data}")
                 self.last_qr_data = qr_data
-                save_asistencia(self.last_qr_data)
+                save_asistencia(self.last_qr_data)  #Guardamos asistencia
                 # llamamos a update_data para consultar DB y actualizar pantalla
                 self.update_data(qr_data)
 

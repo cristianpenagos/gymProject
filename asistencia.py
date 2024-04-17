@@ -21,7 +21,7 @@ def save_asistencia(qr):
         return 'Asistencua guardada exitosamente'
     except Exception as e:
         return f'Error al guardar asistencia: {e}'
-    ###
+    ########
     
 
 
