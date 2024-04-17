@@ -11,7 +11,10 @@ class UserGui:
     def __init__(self, root):
 
         self.iconUser = tk.PhotoImage(file = 'asets/iconUser.png')
-
+        self.iconMedidas = tk.PhotoImage(file = "asets/iconMedidas.png")
+        self.iconMensualidad = tk.PhotoImage(file = "asets/iconMensualidad.png")
+        self.iconQr = tk.PhotoImage(file = "asets/iconQr.png")
+        self.iconBackup = tk.PhotoImage(file = "asets/iconBackup.png")
 
         # Principal Window
         self.root = root
@@ -19,20 +22,16 @@ class UserGui:
         self.root.geometry('1300x700')
 
         
-
-
-        self.boton = tk.Button(root, image=self.iconUser, command=lambda: print("Botón clickeado"))
-        self.boton.pack()
         self.btm_user = tk.Button(
             root, image=self.iconUser, text="Gestión \nUsuarios", font=("Times new roman", 14), command=self.show_user_frame)
         self.btm_medidas = tk.Button(
-            root, text="Medidas", font=("Times new roman", 14), command=self.show_medidas_frame)
+            root, image=self.iconMedidas, text="Medidas", font=("Times new roman", 14), command=self.show_medidas_frame)
         self.btm_mensualidad = tk.Button(
-            root, text='Mensualidad', font=("Times new roman", 14), command=self.show_mensualidad_frame)
-        self.btn_qr = tk.Button(root, text="Activar QR",
+            root, image=self.iconMensualidad, text='Mensualidad', font=("Times new roman", 14), command=self.show_mensualidad_frame)
+        self.btn_qr = tk.Button(root, image=self.iconQr, text="Activar QR",
                                 font=("Times new roman", 14), command=self.active_qr)
         self.btm_backup = tk.Button(
-            root, text='BackUp', font=("Times new roman", 14), command=self.respaldo)
+            root, image=self.iconBackup, text='BackUp', font=("Times new roman", 14), command=self.respaldo)
 
     
         self.btm_user.place(x=10, y=10, width=100, height=100)
