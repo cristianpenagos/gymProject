@@ -5,23 +5,23 @@ from user_info import UserInfo_Frame
 from backup import backup
 from tkinter import messagebox
 from medidas_frame import MedidasFrame
+from ingresos_frame import OtrosIngresosFrame
 
 
 class UserGui:
     def __init__(self, root):
 
-        self.iconUser = tk.PhotoImage(file = 'asets/iconUser.png')
-        self.iconMedidas = tk.PhotoImage(file = "asets/iconMedidas.png")
-        self.iconMensualidad = tk.PhotoImage(file = "asets/iconMensualidad.png")
-        self.iconQr = tk.PhotoImage(file = "asets/iconQr.png")
-        self.iconBackup = tk.PhotoImage(file = "asets/iconBackup.png")
+        self.iconUser = tk.PhotoImage(file='asets/iconUser.png')
+        self.iconMedidas = tk.PhotoImage(file="asets/iconMedidas.png")
+        self.iconMensualidad = tk.PhotoImage(file="asets/iconMensualidad.png")
+        self.iconQr = tk.PhotoImage(file="asets/iconQr.png")
+        self.iconBackup = tk.PhotoImage(file="asets/iconBackup.png")
 
         # Principal Window
         self.root = root
         self.root.title('BODY FIT')
         self.root.geometry('1300x700')
 
-        
         self.btm_user = tk.Button(
             root, image=self.iconUser, text="Gestión \nUsuarios", font=("Times new roman", 14), command=self.show_user_frame)
         self.btm_medidas = tk.Button(
@@ -32,8 +32,9 @@ class UserGui:
                                 font=("Times new roman", 14), command=self.active_qr)
         self.btm_backup = tk.Button(
             root, image=self.iconBackup, text='BackUp', font=("Times new roman", 14), command=self.respaldo)
-        self.btm_ingresos = tk.Button(root, text="Otros \nIngresos", font=("Times new roman", 14))
-    
+        self.btm_ingresos = tk.Button(
+            root, text="Otros \nIngresos", font=("Times new roman", 14), command=self.show_ingresos_frame)
+
         self.btm_user.place(x=10, y=10, width=100, height=100)
         self.btm_medidas.place(x=10, y=120, width=100, height=100)
         self.btm_mensualidad.place(x=10, y=240, width=100, height=100)
@@ -44,6 +45,7 @@ class UserGui:
         self.user_frame = UserFrame(root)
         self.mensualidad_frame = MensualidadFrame(root)
         self.medidas_frame = MedidasFrame(root)
+        self.otrosIngresosFrame = OtrosIngresosFrame(root)
         # self.medidas_frame = tk.Frame(
         #    root, width=300, height=300, bg='lightgreen')
 
@@ -59,8 +61,9 @@ class UserGui:
         self.hide_frames()
         self.mensualidad_frame.place(x=130, y=10)
 
-    #def show_ingresos_frame(self):
-
+    def show_ingresos_frame(self):
+        self.hide_frames()
+        self.otrosIngresosFrame.place(x=130, y=10)
 
     def hide_frames(self):
         self.user_frame.place_forget()
