@@ -59,6 +59,9 @@ class UserGui:
         self.hide_frames()
         self.mensualidad_frame.place(x=130, y=10)
 
+    #def show_ingresos_frame(self):
+
+
     def hide_frames(self):
         self.user_frame.place_forget()
         self.medidas_frame.place_forget()
