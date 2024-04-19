@@ -32,13 +32,14 @@ class UserGui:
                                 font=("Times new roman", 14), command=self.active_qr)
         self.btm_backup = tk.Button(
             root, image=self.iconBackup, text='BackUp', font=("Times new roman", 14), command=self.respaldo)
-        self.btm_ingresos = tk.Button()
+        self.btm_ingresos = tk.Button(root, text="Otros \nIngresos", font=("Times new roman", 14))
     
         self.btm_user.place(x=10, y=10, width=100, height=100)
         self.btm_medidas.place(x=10, y=120, width=100, height=100)
         self.btm_mensualidad.place(x=10, y=240, width=100, height=100)
         self.btn_qr.place(x=10, y=480, width=100, height=100)
         self.btm_backup.place(x=10, y=580, width=100, height=100)
+        self.btm_ingresos.place(x=10, y=360, width=100, height=100)
 
         self.user_frame = UserFrame(root)
         self.mensualidad_frame = MensualidadFrame(root)
