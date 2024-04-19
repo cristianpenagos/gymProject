@@ -32,7 +32,7 @@ class UserGui:
                                 font=("Times new roman", 14), command=self.active_qr)
         self.btm_backup = tk.Button(
             root, image=self.iconBackup, text='BackUp', font=("Times new roman", 14), command=self.respaldo)
-
+        self.btm_ingresos = tk.Button()
     
         self.btm_user.place(x=10, y=10, width=100, height=100)
         self.btm_medidas.place(x=10, y=120, width=100, height=100)
